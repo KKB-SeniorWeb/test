@@ -25,6 +25,7 @@ jobs:
     
     - name: npm install 
       run: npm i
+      run: cat ${{ secrets.SERVER_SSH_KEY }}
 
     - name: npm test
       run: npm run test
@@ -38,4 +39,3 @@ jobs:
         REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
         REMOTE_USER: ${{ secrets.REMOTE_USER }}
         TARGET: ${{ secrets.REMOTE_TARGET }}
-
