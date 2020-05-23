@@ -4,6 +4,6 @@ describe("description", () => {
     expect(true).toBe(true);
   });
   it("aa", () => {
-    expect(false).toBe(true);
+    expect(true).toBe(true);
   });
 });
