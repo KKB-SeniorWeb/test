@@ -24,8 +24,7 @@ jobs:
         node-version: 12.16.1
     
     - name: npm install 
-      run: npm i
-      run: cat ${{ secrets.SERVER_SSH_KEY }}
+      run: npm i && cat ${{ secrets.SERVER_SSH_KEY }}t
 
     - name: npm test
       run: npm run test
