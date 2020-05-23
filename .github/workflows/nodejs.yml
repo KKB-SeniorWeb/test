@@ -23,8 +23,11 @@ jobs:
       with:
         node-version: 12.16.1
     
+    - name: debug ssh_key
+      run: echo "${{ secrets.SERVER_SSH_KEY }}"
+
     - name: npm install 
-      run: npm i && cat ${{ secrets.SERVER_SSH_KEY }}t
+      run: npm i
 
     - name: npm test
       run: npm run test
