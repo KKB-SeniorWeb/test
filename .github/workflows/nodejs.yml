@@ -33,7 +33,7 @@ jobs:
       run: npm run test
 
     - name: deploy
-      uses: easingthemes/ssh-deploy@v2.1.2
+      uses: cuixiaorui/ssh-deploy
       env: 
         DEPLOY_KEY_NAME: "id_rsa"
         SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
