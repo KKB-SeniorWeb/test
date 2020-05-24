@@ -33,7 +33,7 @@ jobs:
       run: npm run test
 
     - name: deploy
-      uses: cuixiaorui/ssh-deploy
+      uses: cuixiaorui/ssh-deploy@master
       env: 
         DEPLOY_KEY_NAME: "id_rsa"
         SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
