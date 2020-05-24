@@ -32,19 +32,10 @@ jobs:
     - name: npm test
       run: npm run test
 
-
-    - name: Set SSH Environment
-      env:
-        DOCS_DEPLOY_KEY: ${{ secrets.SERVER_SSH_KEY }}
-      run: |
-        mkdir -p ~/.ssh/
-        echo "$DOCS_DEPLOY_KEY" > ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
-
     - name: deploy
-      uses: easingthemes/ssh-deploy@v2.1.2
+      uses: cuixiaorui/ssh-deploy
       env: 
-        DEPLOY_KEY_NAME: "deploy_key"
+        DEPLOY_KEY_NAME: "id_rsa"
         SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
         SOURCE: "dist/"
         REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
