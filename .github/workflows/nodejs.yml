@@ -37,8 +37,8 @@ jobs:
           host: ${{ secrets.REMOTE_HOST }}
           username: ${{ secrets.REMOTE_USER }}
           password: ${{ secrets.PASSWORD }}
-          source: "./test.txt"
-          target: "/home/kkb/test.txt"
+          source: "./dist",
+          target: "tmp/
 
       # - name: executing script via ssh password
       #   uses: appleboy/ssh-action@master
