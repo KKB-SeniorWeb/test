@@ -5,39 +5,45 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
 
-    - name: Checkout
-      uses: actions/checkout@v2
+      - name: use Nodejs 12.16.1
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.16.1
 
-    - name: use Nodejs 12.16.1
-      uses: actions/setup-node@v1
-      with:
-        node-version: 12.16.1
-    
-    - name: debug ssh_key
-      run: echo "${{ secrets.SERVER_SSH_KEY }}"
+      - name: debug ssh_key
+        run: echo "${{ secrets.SERVER_SSH_KEY }}"
 
-    - name: npm install 
-      run: npm i
+      - name: npm install
+        run: npm i
 
-    - name: npm test
-      run: npm run test
+      - name: npm test
+        run: npm run test
 
-    - name: deploy
-      uses: cuixiaorui/ssh-deploy
-      env: 
-        DEPLOY_KEY_NAME: "id_rsa"
-        SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
-        SOURCE: "dist/"
-        REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-        REMOTE_USER: ${{ secrets.REMOTE_USER }}
-        TARGET: ${{ secrets.REMOTE_TARGET }}
+      # - name: copy file via ssh password
+      #   uses: appleboy/scp-action@master
+      #   with:
+      #     host: ${{ secrets.REMOTE_HOST }}
+      #     username: ${{ secrets.REMOTE_USER }}
+      #     password: ${{ secrets.PASSWORD }}
+      #     source: "./dist"
+      #     target: "tmp/"
+
+      - name: executing script via ssh password
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          password: ${{ secrets.PASSWORD }}
+          script: cd /home/kkb/ && pwd
