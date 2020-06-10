@@ -38,7 +38,7 @@ jobs:
           username: ${{ secrets.REMOTE_USER }}
           password: ${{ secrets.PASSWORD }}
           source: "nodejs.txt"
-          target: "~/video-platform-back-end/docker-compose.yml"
+          target: "nodejs.txt"
 
       # - name: executing script via ssh password
       #   uses: appleboy/ssh-action@master
