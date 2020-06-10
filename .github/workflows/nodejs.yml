@@ -38,7 +38,7 @@ jobs:
           username: ${{ secrets.REMOTE_USER }}
           password: ${{ secrets.PASSWORD }}
           source: "./docker-compose.yml"
-          target: "~/video-platform-back-end/docker-compose.yml"
+          target: "/home/kkb/video-platform-back-end/"
 
       # - name: executing script via ssh password
       #   uses: appleboy/ssh-action@master
