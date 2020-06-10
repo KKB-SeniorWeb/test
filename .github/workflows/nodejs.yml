@@ -31,19 +31,19 @@ jobs:
       - name: npm test
         run: npm run test
 
-      # - name: copy file via ssh password
-      #   uses: appleboy/scp-action@master
-      #   with:
-      #     host: ${{ secrets.REMOTE_HOST }}
-      #     username: ${{ secrets.REMOTE_USER }}
-      #     password: ${{ secrets.PASSWORD }}
-      #     source: "./dist"
-      #     target: "tmp/"
-
-      - name: executing script via ssh password
-        uses: appleboy/ssh-action@master
+      - name: copy file via ssh password
+        uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.REMOTE_HOST }}
           username: ${{ secrets.REMOTE_USER }}
           password: ${{ secrets.PASSWORD }}
-          script: cd video-platform-back-end && docker-compose down && docker-compose pull && docker-compose up -d
+          source: "../../docker-compose.yml"
+          target: "video-platform-back-end/"
+
+      # - name: executing script via ssh password
+      #   uses: appleboy/ssh-action@master
+      #   with:
+      #     host: ${{ secrets.REMOTE_HOST }}
+      #     username: ${{ secrets.REMOTE_USER }}
+      #     password: ${{ secrets.PASSWORD }}
+      #     script: cd video-platform-back-end && docker-compose down && docker-compose pull && docker-compose up -d
